@@ -1,0 +1,41 @@
+html, body {
+    height: 100%;
+    background-color: lightgreen;
+}
+
+.Info
+{
+    width: 80%;
+    height: 40%;
+    margin: 5% auto;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.Info p
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    padding: 20px 20px;
+}
+
+.Content
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 70%;
+    height: 70%;
+    margin: 5% auto;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.Content article {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    border-radius: 10px;
+    background-color: lightseagreen;
+}
