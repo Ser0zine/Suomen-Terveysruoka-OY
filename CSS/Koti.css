@@ -1,41 +1,112 @@
-html, body {
-    height: 100%;
-    background-color: lightgreen;
-}
-
 .Info
 {
-    width: 80%;
-    height: 40%;
-    margin: 5% auto;
-    border-radius: 10px;
-    background-color: white;
-}
-
-.Info p
-{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 20px;
-    padding: 20px 20px;
-}
-
-.Content
-{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    background-color: #c2ffcf;
     width: 70%;
-    height: 70%;
-    margin: 5% auto;
+    margin: 200px auto;
     border-radius: 10px;
-    background-color: white;
 }
 
-.Content article {
+.Info p 
+{
+    padding: 20px 20px;
+    color: #2f4f4f;
+}
+
+.Info span
+{
+    color: #4f6f6f;
+    font-size: 25px;
+    font-weight: 600;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+h2
+{
+    font-size: 40px;
+    margin-left: 200px;
+}
+
+.News
+{
+    background-color: white;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 50px;
+    width: 80%;
+    height: 500px;
+    margin: 100px auto;
+    overflow-x: auto;
+    overflow-y: hidden;
     border-radius: 10px;
-    background-color: lightseagreen;
+}
+
+.News h1
+{
+    margin: 50px;
+    font-size: 25px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.News a
+{
+    background-color: #c2ffcf;
+    min-width: 400px;
+    height: 450px;
+    align-self: center;
+    margin: 0px 50px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.News h3
+{
+    margin-top: 32px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.News img
+{
+    width: 350px;
+    height: 350px;
+    margin-top: 20px;
+    justify-self: center;
+    text-align: center;
+}
+
+.New_Products
+{
+    background-color: white;
+    display: flex;
+    width: 80%;
+    height: 300px;
+    margin: 100px auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 10px;
+}
+
+.New_Products a
+{
+    background-color: #c2ffcf;
+    min-width: 200px;
+    height: 250px;
+    align-self: center;
+    margin: 0px 50px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.New_Products h3
+{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.New_Products img
+{
+    width: 150px;
+    height: 180px;
+    margin-top: 10px;
+    justify-self: center;
+    text-align: center;
 }
