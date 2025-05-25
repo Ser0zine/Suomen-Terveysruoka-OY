@@ -8,6 +8,8 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(to top right, #f4f4f4, #b4dbc9);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;

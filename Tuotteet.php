@@ -1,3 +1,5 @@
+<?php require_once 'config.php';?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,8 +24,6 @@
                 </div>
                 <section class="Vegan">
                     <?php
-                    $Conn = new mysqli("localhost", "root", "", "suomen_terveysruoka_oy");
-                    if ($Conn->connect_error) die("Yhteys epäonnistui: " . $Conn->connect_error);
 
                     $Query = "SELECT title, image FROM vegan_products";
                     $Result = $Conn->query($Query);
@@ -39,8 +39,7 @@
                         }
                         
                     } else  echo '<p>Ei tuotteita tällä hetkellä.</p>';
-
-                    $Conn->close();
+                    
                     ?>
                 </section>
                 <div class="Section_Title">
@@ -49,8 +48,6 @@
                 </div>
                 <section class="Gluten_Free">
                     <?php
-                    $Conn = new mysqli("localhost", "root", "", "suomen_terveysruoka_oy");
-                    if ($Conn->connect_error) die("Yhteys epäonnistui: " . $Conn->connect_error);
 
                     $Query = "SELECT title, image FROM glutenless_products";
                     $Result = $Conn->query($Query);
