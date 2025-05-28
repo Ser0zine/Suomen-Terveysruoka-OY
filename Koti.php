@@ -1,3 +1,9 @@
+<?php require_once 'config.php';
+
+ShowMessage();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,9 +23,6 @@
         <h2>Ajankohtaista</h2>
         <section class="News">
             <?php
-            $Conn = new mysqli("localhost", "root", "", "suomen_terveysruoka_oy");
-            if ($Conn->connect_error) die("Yhteys epäonnistui: " . $Conn->connect_error);
-
             $Query = "SELECT title, image FROM news";
             $Result = $Conn->query($Query);
 
@@ -34,16 +37,11 @@
                 }
                 
             } else  echo '<p>Ei uutisia vielä.</p>';
-
-            $Conn->close();
             ?>
         </section>
         <h2>Uudet tuotteet</h2>
         <section class="New_Products">
             <?php
-            $Conn = new mysqli("localhost", "root", "", "suomen_terveysruoka_oy");
-            if ($Conn->connect_error) die("Yhteys epäonnistui: " . $Conn->connect_error);
-
             $Query = "SELECT title, image FROM new_products";
             $Result = $Conn->query($Query);
 
@@ -58,8 +56,6 @@
                 }
                 
             } else  echo '<p>Ei uusia tuotteita tällä hetkellä.</p>';
-
-            $Conn->close();
             ?>
         </section>
         <custom-footer></custom-footer>

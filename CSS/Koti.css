@@ -1,112 +1,281 @@
 .Info
 {
-    background-color: #c2ffcf;
-    width: 70%;
-    margin: 200px auto;
-    border-radius: 10px;
+    background-color: white;
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .Info p 
 {
-    padding: 20px 20px;
-    color: #2f4f4f;
+    color: #2c3e50;
+    font-size: 18px;
+    line-height: 1.8;
+    margin: 0;
 }
 
 .Info span
 {
-    color: #4f6f6f;
-    font-size: 25px;
-    font-weight: 600;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    color: #667eea;
+    font-size: 28px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 20px;
 }
 
 h2
 {
-    font-size: 40px;
-    margin-left: 200px;
+    font-size: 42px;
+    margin: 60px 0 40px 0;
+    text-align: center;
+    color: #2c3e50;
+    font-weight: 700;
 }
 
 .News
 {
     background-color: white;
-    display: flex;
-    width: 80%;
-    margin: 100px auto;
-    padding: 50px 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    border-radius: 10px;
-}
-
-.News h1
-{
-    margin: 50px;
-    font-size: 25px;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 30px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 60px auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .News a
 {
-    background-color: #c2ffcf;
-    min-width: 400px;
-    height: 450px;
-    align-self: center;
-    margin: 0px 50px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+}
+
+.News a:hover
+{
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
 }
 
 .News h3
 {
-    margin-top: 32px;
+    color: white;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
+    padding: 20px;
+    margin: 0;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
 }
 
 .News img
 {
-    width: 350px;
-    height: 350px;
-    margin-top: 20px;
-    justify-self: center;
+    width: 100%;
+    flex: 1;
+    object-fit: cover;
+}
+
+.News p
+{
+    color: white;
     text-align: center;
+    font-size: 16px;
+    padding: 20px;
+    margin: 0;
 }
 
 .New_Products
 {
     background-color: white;
-    display: flex;
-    width: 80%;
-    height: 300px;
-    margin: 100px auto;
-    overflow-x: auto;
-    overflow-y: hidden;
-    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 30px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 60px auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .New_Products a
 {
-    background-color: #c2ffcf;
-    min-width: 200px;
-    height: 250px;
-    align-self: center;
-    margin: 0px 50px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+}
+
+.New_Products a:hover
+{
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
 }
 
 .New_Products h3
 {
-    margin-top: 20px;
+    color: #2c3e50;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
+    padding: 20px;
+    margin: 0;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
 }
 
 .New_Products img
 {
-    width: 150px;
-    height: 180px;
-    margin-top: 10px;
-    justify-self: center;
+    width: 100%;
+    flex: 1;
+    object-fit: cover;
+}
+
+.New_Products p
+{
+    color: #2c3e50;
     text-align: center;
+    font-size: 16px;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .News, .New_Products {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .Info {
+        width: 95%;
+        margin: 30px auto;
+        padding: 30px 25px;
+    }
+    
+    .Info span {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    
+    .Info p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    h2 {
+        font-size: 32px;
+        margin: 40px 0 30px 0;
+    }
+    
+    .News, .New_Products {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        width: 95%;
+        padding: 25px;
+        margin-bottom: 40px;
+        gap: 20px;
+    }
+    
+    .News a, .New_Products a {
+        height: 280px;
+    }
+    
+    .News h3, .New_Products h3 {
+        font-size: 16px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Info {
+        width: 95%;
+        margin: 20px auto;
+        padding: 25px 20px;
+    }
+    
+    .Info span {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+    
+    .Info p {
+        font-size: 15px;
+    }
+    
+    h2 {
+        font-size: 28px;
+        margin: 30px 0 25px 0;
+    }
+    
+    .News, .New_Products {
+        width: 95%;
+        padding: 20px;
+        margin-bottom: 30px;
+        gap: 15px;
+    }
+    
+    .News a, .New_Products a {
+        height: 250px;
+    }
+    
+    .News h3, .New_Products h3 {
+        font-size: 15px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 320px) {
+    .Info {
+        padding: 20px 15px;
+    }
+    
+    .Info span {
+        font-size: 18px;
+    }
+    
+    .Info p {
+        font-size: 14px;
+    }
+    
+    h2 {
+        font-size: 24px;
+        margin: 25px 0 20px 0;
+    }
+    
+    .News, .New_Products {
+        padding: 15px;
+        gap: 12px;
+    }
+    
+    .News a, .New_Products a {
+        height: 220px;
+    }
+    
+    .News h3, .New_Products h3 {
+        font-size: 14px;
+        padding: 10px;
+    }
 }

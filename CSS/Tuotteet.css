@@ -1,14 +1,23 @@
+/* Search Form */
 form
 {
-    width: 400px;
-    height: 50px;
+    width: 90%;
+    max-width: 500px;
+    height: 55px;
     display: flex;
-    margin-top: 80px;
-    margin-left: auto;
-    margin-right: 20px;
-    border-radius: 6px;
+    margin: 30px auto;
+    border-radius: 25px;
     background-color: white;
-    font-size: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    border: 2px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+form:focus-within
+{
+    border-color: #667eea;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
 }
 
 form input {
@@ -16,69 +25,233 @@ form input {
     flex: 1;
     border: none;
     outline: none;
-    padding: 10px;
+    padding: 15px 20px;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+form input::placeholder {
+    color: #95a5a6;
 }
 
 form button {
-    background-color: transparent;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border: none;
     cursor: pointer;
-    padding: 10px;
+    padding: 15px 20px;
+    border-radius: 0 25px 25px 0;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 form button:hover
 {
-    transform: scale(1.1);
-    color: green;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
+/* Main container for both product sections */
 .Products
 {
-    width: 80%;
-    margin: 5% auto;
+    width: 95%;
+    max-width: 1400px;
+    margin: 0 auto 60px auto;
+    display: flex;
+    gap: 40px;
 }
 
-.Section_Title
+/* Individual product section containers */
+.product-section
 {
-    margin-left: 8vh;
-    font-size: 1.3rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Section titles */
+.section-title
+{
+    text-align: center;
+    font-size: 28px;
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+/* Product grids */
 .Products section
 {
     background-color: white;
-    display: flex;
-    width: 90%;
-    height: auto;
-    margin: 100px auto;
-    overflow-x: auto;
-    overflow-y: hidden;
-    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
+/* Product cards */
 .Products a
 {
-    background-color: #c2ffcf;
-    min-width: 200px;
-    height: 250px;
-    align-self: center;
-    margin: 50px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 280px;
+}
+
+.Products a:hover
+{
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+}
+
+/* Different colors for different sections */
+.Vegan a
+{
+    background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+}
+
+.Vegan a:hover
+{
+    box-shadow: 0 15px 40px rgba(76, 175, 80, 0.4);
+}
+
+.Gluten_Free a
+{
+    background: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%);
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.3);
+}
+
+.Gluten_Free a:hover
+{
+    box-shadow: 0 15px 40px rgba(255, 152, 0, 0.4);
 }
 
 .Products h3
 {
-    margin-top: 20px;
+    color: white;
     text-align: center;
-    font-size: 20px;
+    font-size: 16px;
+    padding: 18px;
+    margin: 0;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
 }
 
-.Products section img
+.Products img
 {
-    width: 150px;
-    height: 180px;
-    margin-top: 10px;
-    justify-self: center;
+    width: 100%;
+    flex: 1;
+    object-fit: cover;
+}
+
+.Products p
+{
+    color: white;
     text-align: center;
+    font-size: 14px;
+    padding: 15px;
+    margin: 0;
+}
+
+/* Responsive design */
+@media screen and (max-width: 1200px) {
+    .Products {
+        width: 98%;
+        gap: 30px;
+    }
+    
+    .Products section {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 30px;
+    }
+    
+    .Products a {
+        height: 250px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Products {
+        flex-direction: column;
+        width: 95%;
+        gap: 50px;
+    }
+    
+    .Products section {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 25px;
+        gap: 15px;
+    }
+    
+    .Products a {
+        height: 220px;
+    }
+    
+    .Products h3 {
+        font-size: 14px;
+        padding: 12px;
+    }
+    
+    .section-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Products section {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 15px;
+    }
+    
+    .Products a {
+        height: 200px;
+    }
+    
+    .Products h3 {
+        font-size: 13px;
+        padding: 10px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .Products section {
+        padding: 15px;
+        gap: 12px;
+    }
+    
+    .Products a {
+        height: 180px;
+    }
+    
+    .Products h3 {
+        font-size: 12px;
+        padding: 8px;
+    }
+    
+    .section-title {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
 }

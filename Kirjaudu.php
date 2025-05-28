@@ -1,65 +1,95 @@
 <?php
 
-require 'config.php'; // Session Start() ja $Conn
+require_once 'config.php'; // Session Start() ja $Conn
 
-function redirect($msg, $type, $loc = 'Kirjaudu.php') {
-    $_SESSION['message'] = $msg;
-    $_SESSION['message_type'] = $type;
-    header("Location:$loc");
+HandleAuth($Conn);
+
+ShowMessage();
+
+function Redirect($Message, $Type, $Location = 'Kirjaudu.php') 
+{
+    $_SESSION['message'] = $Message;
+    $_SESSION['message_type'] = $Type;
+
+    header("Location:$Location");
+
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['Email'] ?? '');
-    $pass  = trim($_POST['Password'] ?? '');
-    if (!$email || !$pass) {
-        redirect('Täytä kaikki kentät.', 'error');
+function HandleAuth($Conn)
+{
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST' || isset($_SESSION['Logged_In'])) return;
+    
+    $Email = trim($_POST['Email'] ?? '');
+    $Pass = trim($_POST['Password'] ?? '');
+
+    if (!$Email || !$Pass) return Redirect('Täytä kaikki kentät.', 'Error');
+
+    if (isset($_POST['Login_Action']))
+    {
+        $Statement = $Conn->prepare("SELECT ID, Password FROM users WHERE Email = ?");
+        if (!$Statement) return Redirect('Tietokantavirhe.', 'Error');
+
+        $Statement->bind_param("s", $Email);
+        if (!$Statement->execute()) 
+        {
+            $Statement->close();
+            return Redirect('Tietokantavirhe.', 'Error');
+        }
+
+        $Statement->bind_result($UID, $Hash);
+        if ($Statement->fetch() && password_verify($Pass, $Hash)) 
+        {
+            $_SESSION['Logged_In'] = true;
+            $_SESSION['ID'] = $UID;
+            $_SESSION['Email'] = $Email;
+
+            setcookie('Logged_In', $UID, time() + (86400 * 30), "/"); // Set user logged in for 30 days
+
+            $Statement->close();
+            return Redirect('Kirjautuminen onnistui!', 'Success', 'Koti.php');
+        }
+
+        $Statement->close();
+        return Redirect('Kirjautuminen epäonnistui. Tarkista sähköposti ja salasana.', 'Error');
     }
 
-    if (isset($_POST['Login_Action'])) {
-        $stmt = $Conn->prepare("SELECT id, Password FROM users WHERE Email = ?");
-        if ($stmt) {
-            $stmt->bind_param("s", $email);
-            if ($stmt->execute()) {
-                $stmt->bind_result($uid, $hash);
-                if ($stmt->fetch() && password_verify($pass, $hash)) {
-                    $_SESSION['loggedin'] = true;
-                    $_SESSION['id'] = $uid;
-                    $_SESSION['Email'] = $email;
-                    $stmt->close();
-                    redirect('Kirjautuminen onnistui!', 'success', 'Koti.php');
-                }
-            }
-            $stmt->close();
-        }
-        redirect('Kirjautuminen epäonnistui. Tarkista sähköposti ja salasana.', 'error');
+    if (isset($_POST['Register_Action'])) 
+    {
+        $Statement = $Conn->prepare("SELECT ID FROM users WHERE Email = ?");
+        if (!$Statement) return Redirect('Tietokantavirhe.', 'Error');
 
-    } elseif (isset($_POST['Register_Action'])) {
-        $stmt = $Conn->prepare("SELECT id FROM users WHERE Email = ?");
-        if ($stmt) {
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $stmt->store_result();
-            if ($stmt->num_rows) {
-                $stmt->close();
-                redirect('Käyttäjä tällä sähköpostilla on jo olemassa.', 'error');
-            }
-            $stmt->close();
-            $hash = password_hash($pass, PASSWORD_DEFAULT);
-            $stmt = $Conn->prepare("INSERT INTO users (Email, Password) VALUES (?, ?)");
-            if ($stmt) {
-                $stmt->bind_param("ss", $email, $hash);
-                if ($stmt->execute()) {
-                    $_SESSION['loggedin'] = true;
-                    $_SESSION['id'] = $Conn->insert_id;
-                    $_SESSION['Email'] = $email;
-                    $stmt->close();
-                    redirect('Rekisteröityminen onnistui! Olet nyt kirjautunut sisään.', 'success', 'Koti.php');
-                }
-                $stmt->close();
-            }
+        $Statement->bind_param("s", $Email);
+        $Statement->execute();
+        $Statement->store_result();
+
+        if ($Statement->num_rows)
+        {
+            $Statement->close();
+            return Redirect('Käyttäjä tällä sähköpostilla on jo olemassa.', 'Error');
         }
-        redirect('Rekisteröinti epäonnistui. Yritä myöhemmin uudelleen.', 'error');
+
+        $Statement->close();
+
+        $Hash = password_hash($Pass, PASSWORD_DEFAULT);
+        $Statement = $Conn->prepare("INSERT INTO users (Email, Password) VALUES (?, ?)");
+        if (!$Statement) return Redirect('Tietokantavirhe.', 'Error');
+
+        $Statement->bind_param("ss", $Email, $Hash);
+        if (!$Statement->execute()) 
+        {
+            $Statement->close();
+            return Redirect('Rekisteröinti epäonnistui. Yritä myöhemmin uudelleen.', 'Error');
+        }
+
+        $_SESSION['Logged_In'] = true;
+        $_SESSION['ID'] = $Conn->insert_id;
+        $_SESSION['Email'] = $Email;
+
+        setcookie('Logged_In', $Conn->Insert_id, time() + (86400 * 30), "/"); // Sets users logged in state for 30 days
+
+        $Statement->close();
+        return Redirect('Rekisteröityminen onnistui! Olet nyt kirjautunut sisään.', 'Success', 'Koti.php');
     }
 }
 
